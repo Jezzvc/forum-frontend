@@ -15,22 +15,18 @@ const PostForm = ({
 }) => {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
-    console.log("PostForm", postId, name, type);
     //User Id solo por este demo
     const [userId] = useState(1);
     const handleSubmit = async (event) => {
-        console.log("PostForm22", postId, parentCommentId, type);
         event.preventDefault();
         try {
             if (type === "post") {
                 const newPost = await createPost({ userId, text, name, avatar });
-                console.log('Post creado:', newPost);
                 setText('');
                 if (onNewPost) {
                     onNewPost(newPost);
                 }
             } else if (type === "reply" && postId!== 0 && postId !== undefined) {
-                debugger;
                 const name= sessionStorage.getItem('name');
                 const avatar = sessionStorage.getItem('avatar');
                 const newComment = await createComment({
@@ -41,12 +37,10 @@ const PostForm = ({
                     name,
                     avatar,
                   });
-                console.log('Comentario postid:', postId);
                   setText('');
                   if(onNewReply) {
                     onNewReply(newComment);
                   }
-                // console.log("Reply created:", postId, parentCommentId, userId, text, name, avatar );
             }
         } catch (err) {
             console.error(err.message);

@@ -18,8 +18,6 @@ export default function Forum({ name, avatar }) {
     }
 
     const handleNewReply = (newReply) => {
-        debugger
-        console.log("handleNewReply", newReply);
         setReplies((prev) => {
             const parentCommentId = newReply.parentCommentId || newReply.postId;
             return {
@@ -42,9 +40,6 @@ export default function Forum({ name, avatar }) {
 
             for (const post of backendPosts) {
                 const replies = await getReplies(post.id);
-                console.log(`Respuestas para el post ${post.id}:`, replies);
-                // replies.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                // repliesData[post.id] = replies;
                 repliesData.push(...replies)
             }
             const repliesByParentCommentId = {};
@@ -61,7 +56,6 @@ export default function Forum({ name, avatar }) {
             });
 
             setReplies(repliesByParentCommentId);
-            console.log("Replies despues por parentId:", repliesByParentCommentId);
         };
 
         if (backendPosts.length > 0) {
@@ -69,7 +63,6 @@ export default function Forum({ name, avatar }) {
         }
     }, [backendPosts]);
 
-    console.log('los replies', replies);
     return (
         <div className="comment-container" >
             <PostForm buttonText="Publicar" name={name} avatar={avatar} type="post" onNewPost={handleNewPost} />
@@ -78,10 +71,6 @@ export default function Forum({ name, avatar }) {
                     onNewReply={handleNewReply}
                     replies={replies[posts.id] || []} getReplies={id => replies[id] || []} />
             ))}
-            {/* {resp && <PostForm buttonText="Responder" name={name} avatar={avatar} />} */}
-            {/* {backendPosts.map((posts) => (
-                <Comment key={posts.id} comment={posts} avatar={avatar} replies={[]} />
-            ))} */}
 
         </div>
     );

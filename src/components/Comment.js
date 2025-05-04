@@ -11,9 +11,7 @@ const Comment = ({
     onNewReply,
 }) => {
     let date = new Date(comment.timestamp);
-    console.log("re", replies);
     
-    console.log("comment", comment);
     const [resp, setResp] = React.useState(false);
     const [postId, setPostId] = React.useState(comment.postId);
     const isSecondLevel = comment.parentCommentId ===null || comment.parentCommentId === undefined || comment.parentCommentId === 0;
@@ -21,8 +19,6 @@ const Comment = ({
         setResp((prev) => !prev);
 
     };
-    console.log("Respuestas para este comentario:", replies);
-    console.log("resp",resp);
 
     return (
         <div className="comment">
