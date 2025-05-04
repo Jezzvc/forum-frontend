@@ -1,0 +1,111 @@
+.publish-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e33e5c;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+}
+
+.publish-button:hover {
+    background-color: #fb4b6b;
+}
+
+.publish-button:disabled,
+.publish-button[disabled] {
+    background-color: #f081cd;
+    opacity: 0.5;
+    cursor: default;
+}
+
+.post-textarea {
+    width: 550px;
+    height: 55px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    border: 1px solid rgb(107, 114, 12);
+}
+
+.container {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 0px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.comment-container {
+    margin-top: 40px;
+}
+
+.comment {
+    display: flex;
+    margin-top: 28px;
+}
+
+.comment-image-container {
+    margin-right: 12px;
+}
+
+.comment-image-container img {
+    border-radius: 50px;
+    width: 48px;
+    height: 48px;
+}
+
+.comment-right-part {
+    width: 550px;
+    word-break: break-all;
+}
+
+.comment-content {
+    display: flex;
+    
+}
+
+.comment-author {
+    margin-right: 8px;
+    font-size: 20px;
+    color: #ee009a;
+}
+
+.comment-create {
+    margin-top: 11px;
+    margin-left: auto;
+    font-size: 15px;
+    color: #ee009a;
+}
+
+.comment-text {
+    font-size: 15px;
+    color: black;
+    display: flex;
+}
+
+.replies {
+    margin-top: 20px;
+    margin-left: 30px; /* Indent replies */
+
+  }     
+
+/* .repliesofreplies {
+    margin-left: 40px;
+  } */
+
+  .comment-actions {
+    display: flex;
+    font-size: 12px;
+    color: #e33e5c;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  
+  .comment-action {
+    margin-right: 8px;
+  }
+  
+  .comment-action:hover {
+    text-decoration: underline;
+  }
