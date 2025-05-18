@@ -1,7 +1,7 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PostForm from "./PostForm";
 import Comment from "./Comment";
-import { getPosts, getReplies } from "../services/services";
+import { getPosts, getReplies as getfromBackReplies } from "../services/services";
 import "../css/Forum.css";
 
 export default function Forum({ name, avatar }) {
@@ -39,7 +39,7 @@ export default function Forum({ name, avatar }) {
             const repliesData = [];
 
             for (const post of backendPosts) {
-                const replies = await getReplies(post.id);
+                const replies = await getfromBackReplies(post.id);
                 repliesData.push(...replies)
             }
             const repliesByParentCommentId = {};
@@ -63,13 +63,17 @@ export default function Forum({ name, avatar }) {
         }
     }, [backendPosts]);
 
+    const getReplies = useCallback((postId) => {
+        return replies[postId] || [];
+    }, [replies]);
+
     return (
         <div className="comment-container" >
             <PostForm buttonText="Publicar" name={name} avatar={avatar} type="post" onNewPost={handleNewPost} />
             {backendPosts.map((posts) => (
                 <Comment key={posts.id} comment={posts} name={name} avatar={avatar}
                     onNewReply={handleNewReply}
-                    replies={replies[posts.id] || []} getReplies={id => replies[id] || []} />
+                    getReplies={getReplies} />
             ))}
 
         </div>

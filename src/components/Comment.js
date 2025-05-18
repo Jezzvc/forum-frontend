@@ -6,7 +6,6 @@ const Comment = ({
     comment,
     name,
     avatar,
-    replies,
     getReplies,
     onNewReply,
 }) => {
@@ -19,6 +18,7 @@ const Comment = ({
         setResp((prev) => !prev);
 
     };
+    const replies = getReplies?.(comment.id);
 
     return (
         <div className="comment">
@@ -49,7 +49,7 @@ const Comment = ({
                 {replies && replies.length > 0 && (
                     <div className="replies">
                         {replies.map((reply) => (
-                            <Comment comment={reply} key={reply.id} avatar={reply.avatar} replies={getReplies(reply.id)}
+                            <Comment comment={reply} key={reply.id} avatar={reply.avatar} replies={getReplies?.(reply.id)}
                                 onNewReply={onNewReply}
                                 getReplies={getReplies} postId={postId} />
                         ))}
